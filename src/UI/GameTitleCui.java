@@ -14,5 +14,4 @@ public class GameTitleCui {
         System.out.println("+++++++++++++++++++++++++");
         System.out.println("+++++++++++++++++++++++++");
     }
-    
 }

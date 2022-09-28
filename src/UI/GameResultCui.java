@@ -2,7 +2,7 @@ package UI;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-import gameObject.GameManager;
+import gameObject.Game;
 import gameObject.Player;
 
 /**
@@ -13,7 +13,7 @@ public class GameResultCui {
      * ゲームの結果を表示する。
      * @throws InterruptedException
      */
-    public static void showResult(GameManager gameManager) throws InterruptedException{
+    public static void showResult(Game gameManager) throws InterruptedException{
         System.out.println("------------結果------------");
         Thread.sleep(1000);
         System.out.print("ディーラーの点数：");
@@ -28,11 +28,11 @@ public class GameResultCui {
             int money = player.getMoney();
             int bet = player.getBet();
             Thread.sleep(1000);
-            if(gameManager.getResult(i) == GameManager.Results.win){
+            if(gameManager.getResult(i) == Game.Results.win){
                 System.out.println("勝ちました！！！おめでとう！！！");
                 System.out.println("お金：" + money + "(+" + bet + ")");
             }
-            else if(gameManager.getResult(i) == GameManager.Results.lose){
+            else if(gameManager.getResult(i) == Game.Results.lose){
                 System.out.println("負けました...");
                 System.out.println("お金：" + money + "(-" + bet + ")");
                 if(player.isGameOver())
@@ -51,7 +51,7 @@ public class GameResultCui {
         Thread.sleep(1000);
     }
 
-    public static void showResultBust(GameManager gameManager) throws InterruptedException{
+    public static void showResultBust(Game gameManager) throws InterruptedException{
         System.out.println("------------結果------------");
         for(int i = 0;i < gameManager.getPlayers().size();i++){
             Player player = gameManager.getPlayers().get(i);
@@ -65,7 +65,6 @@ public class GameResultCui {
             {
                 System.out.println(player.getName() + "、 ゲームオーバー！");
                 gameManager.putRetiredPlayer(player);
-                
             }
         }
         System.out.println("----------------------------");
@@ -76,7 +75,7 @@ public class GameResultCui {
      * ゲームの結果を表示する。
      * @throws InterruptedException
      */
-    public static void showResultEnd(GameManager gameManager) throws InterruptedException{
+    public static void showResultEnd(Game gameManager) throws InterruptedException{
         System.out.print("最終結果");
         Thread.sleep(500);
         System.out.print(".");
@@ -98,7 +97,5 @@ public class GameResultCui {
             Thread.sleep(1000);
             count++;
         }
-
     }
-    
 }

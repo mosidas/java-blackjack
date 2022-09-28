@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import gameObject.Card;
-import gameObject.GameManager;
+import gameObject.Game;
 import gameObject.Player;
 
 /**
@@ -16,7 +16,7 @@ public class PlayersActionCui {
      * @param scanner 標準入力
      * @param gameManager ゲーム
      */
-    public static void setPlayersBet(Scanner scanner, GameManager gameManager) {
+    public static void setPlayersBet(Scanner scanner, Game gameManager) {
         for(Player player : gameManager.getPlayers()){
             while(true){
                 try{
@@ -45,7 +45,7 @@ public class PlayersActionCui {
      * @param gameManager ゲーム
      * @throws InterruptedException
      */
-    public static void doPlayersTurn(Scanner scanner, GameManager gameManager) throws InterruptedException{
+    public static void doPlayersTurn(Scanner scanner, Game gameManager) throws InterruptedException{
         for(Player player : gameManager.getPlayers()){
             if(player.isGameOver()){
                 continue;
@@ -64,7 +64,7 @@ public class PlayersActionCui {
      * プレイヤーターンを表示する。
      * @param scanner
      */
-    private static void showPlayerTurns(Scanner scanner, GameManager gameManager, Player player) {
+    private static void showPlayerTurns(Scanner scanner, Game gameManager, Player player) {
         boolean stand = false;
 
         System.out.println(player.getName() + "のターン！");
@@ -100,7 +100,7 @@ public class PlayersActionCui {
      * @param scanner
      * @return
      */
-    private static int getPlayerAction(GameManager gameManager, Scanner scanner){
+    private static int getPlayerAction(Game gameManager, Scanner scanner){
         while(true){
             try{
                 System.out.print("どうする? ヒット:1 スタンド:2 →   ");
@@ -121,12 +121,11 @@ public class PlayersActionCui {
      * ゲームの結果を表示する。(バーストで敗北時)
      * @throws InterruptedException
      */
-    private static void showResultBust(GameManager gameManager, Player player ) throws InterruptedException {
-    	System.out.print(player.getName() + "の点数：");
+    private static void showResultBust(Game gameManager, Player player ) throws InterruptedException {
+        System.out.print(player.getName() + "の点数：");
         System.out.println(player.getHand().getScore());
         Thread.sleep(1000);
         System.out.println("バースト！");
         Thread.sleep(1000);
     }
-    
 }

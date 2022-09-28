@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import gameObject.GameSettings;
 
-/** 
+/**
  * ゲーム設定のCUI
 */
 public class GameSettingCui {
@@ -18,7 +18,6 @@ public class GameSettingCui {
         boolean soft17 = GameSettingCui.setHitSoft17(scanner);
         // 所持金設定
         int defaultMoney = GameSettingCui.setDefaultMoney(scanner);
-        
         return new GameSettings(playerCount, deckCount, soft17, defaultMoney);
     }
 

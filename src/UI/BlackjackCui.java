@@ -1,14 +1,14 @@
 package UI;
 import java.util.Scanner;
 
-import gameObject.GameManager;
+import gameObject.Game;
 import gameObject.GameSettings;
 
 /**
  * ブラックジャックのCUIクラス
  */
 public class BlackjackCui {
-    private GameManager gameManager;
+    private Game gameManager;
 
     /**
      * ゲームプレイ
@@ -21,7 +21,7 @@ public class BlackjackCui {
         Scanner scanner = new Scanner(System.in);
         // ゲーム設定
         GameSettings gs = GameSettingCui.getGameSettings(scanner);
-        gameManager = new GameManager(gs);
+        gameManager = new Game(gs);
         // ゲーム終了するまでループ
         while(true) {
             // 掛け金を決める。
@@ -45,7 +45,6 @@ public class BlackjackCui {
             DealersActionCui.doDealerTurns(gameManager);
             // 結果を表示する。
             GameResultCui.showResult(gameManager);
-            
             // 続けるか選ぶ。
             int input = GameStartCui.getContinue(scanner);
             if(input == 2){

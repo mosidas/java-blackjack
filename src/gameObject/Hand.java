@@ -16,7 +16,7 @@ public class Hand {
     Hand(){
         cards = new ArrayList<Card>();
     }
-    
+
     /**
      * カードを手札に加える。
      * @param card 手札に加えるカード
@@ -87,6 +87,5 @@ public class Hand {
         else{
             return false;
         }
-        
     }
 }

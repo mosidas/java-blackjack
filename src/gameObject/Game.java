@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * ゲーム管理クラス
  */
-public class GameManager {
+public class Game {
     private Deck deck;
     private List<Player> players;
     private Player dealer;
@@ -22,7 +22,7 @@ public class GameManager {
         surrender
     }
 
-    public GameManager(GameSettings settings){
+    public Game(GameSettings settings){
         players = new ArrayList<Player>();
         retiredPlayers = new ArrayList<Player>();
         dealer = new Player("ディーラー",0);

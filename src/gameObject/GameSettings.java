@@ -4,7 +4,6 @@ public class GameSettings {
     private final int deckCount;
     private final boolean soft17;
     private final int defaultMoney;
-    
 
     public GameSettings(int pc, int dc, boolean s17, int dm){
         playerCount = pc;
@@ -28,6 +27,4 @@ public class GameSettings {
     public int getDefaultMoney(){
         return defaultMoney;
     }
-
-    
 }
