@@ -31,7 +31,7 @@ public class BlackjackCui {
             // 各プレイヤーのターンを実行する。
             PlayersActionCui.doPlayersTurn(scanner, gameManager);
             // 全員バーストしてたら終了する。
-            if(gameManager.allPlayersIsBust()){
+            if(gameManager.allPlayerHandsIsBust()){
                 // 結果を表示する。
                 GameResultCui.showResultBust(gameManager);
                 // 続けるか選ぶ。

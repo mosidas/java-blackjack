@@ -64,42 +64,41 @@ public class Game {
     public void dealInitialHand(){
         for(Player player: getPlayers()){
             player.resetHand();
-            player.hit(getDeck());
-            player.hit(getDeck());
+            player.getHands().get(0).hit(getDeck());
+            player.getHands().get(0).hit(getDeck());
         }
-        
         getDealer().resetHand();
-        getDealer().hit(getDeck());
-        getDealer().hit(getDeck());
+        getDealer().getHands().get(0).hit(getDeck());
+        getDealer().getHands().get(0).hit(getDeck());
     }
 
-    /**
-     * ゲームの結果を取得する。
-     * @return Results列挙型(win, lose, draw)
-     */
-    public Results getResult(int n){
-        Player player = getPlayers().get(n);
-        if(player.getHand().isBust()){
+    public Results getResult(Player player, Hand hand){
+        Hand dealersHand = getDealer().getHands().get(0);
+        if(player.isSurrender())
+        {
+            return Results.surrender;
+        }
+        if(hand.isBust()){
             return Results.lose;
         }
-        else if(getDealer().getHand().isBust() ){
+        else if(dealersHand.isBust() ){
             return Results.win;
         }
         else{
-            if(player.getHand().isNaturalBlackjack() && !getDealer().getHand().isNaturalBlackjack()){
+            if(hand.isNaturalBlackjack() && !dealersHand.isNaturalBlackjack()){
                 return Results.win;
             }
-            else if(player.getHand().isNaturalBlackjack() && getDealer().getHand().isNaturalBlackjack()){
+            else if(hand.isNaturalBlackjack() && dealersHand.isNaturalBlackjack()){
                 return Results.draw;
             }
-            else if(!player.getHand().isNaturalBlackjack() && getDealer().getHand().isNaturalBlackjack()){
+            else if(!hand.isNaturalBlackjack() && dealersHand.isNaturalBlackjack()){
                 return Results.lose;
             }
-            else if(player.getHand().getScore() > getDealer().getHand().getScore())
+            else if(hand.getScore() > dealersHand.getScore())
             {
                 return Results.win;
             }
-            else if (player.getHand().getScore() < getDealer().getHand().getScore())
+            else if (hand.getScore() < dealersHand.getScore())
             {
                 return Results.lose;
             }
@@ -107,25 +106,26 @@ public class Game {
                 return Results.draw;
             }
         }
+
     }
 
-    public void calcReturn(int n){
-        int bet = getPlayers().get(n).getBet();
-        Results r = getResult(n);
-        if(r == Results.win){
-            getPlayers().get(n).addMoney(bet);
-        }
-        else if(r == Results.lose){
-            getPlayers().get(n).addMoney(-bet);
-        }
-        else if (r == Results.surrender){
-            getPlayers().get(n).addMoney(-bet * 1/2);
-        }
+    public void calcReturn(Player player, Hand hand){
+        Results r = getResult(player, hand);
+            if(r == Results.win){
+                player.addMoney(player.getBet());
+            }
+            else if(r == Results.lose){
+                player.addMoney(-player.getBet());
+            }
+            else if (r == Results.surrender){
+                player.addMoney(-player.getBet() * 1/2);
+            }
     }
 
-    public boolean allPlayersIsBust(){
+    public boolean allPlayerHandsIsBust(){
         for(Player player : getPlayers()){
-            if(!player.getHand().isBust()){
+            for(Hand hand : player.getHands())
+            if(!hand.isBust()){
                 return false;
             }
         }

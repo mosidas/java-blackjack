@@ -26,6 +26,14 @@ public class Hand {
     }
 
     /**
+     *  ヒットする。山札から１枚とって手札に加える。
+     * @param deck 山札
+     */
+    public void hit(Deck deck){
+        add(deck.pop());
+    }
+
+    /**
      * 手札を取得する。
      * @return 手札(カードのリスト)
      */

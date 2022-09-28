@@ -19,14 +19,14 @@ public class DealersActionCui {
         // 各プレイヤーの手札を表示する。
         for(Player player : gameManager.getPlayers()){
             System.out.print(player.getName() + "の手札：");
-            for(Card card : player.getHand().toList()){
+            for(Card card : player.getHands().get(0).toList()){
                 System.out.print(card.getText() + " ");
             }
             System.out.println("");
         }
         // ディーラーの手札を表示する。
         System.out.print("ディーラーの手札：");
-        List<Card> dcards = gameManager.getDealer().getHand().toList();
+        List<Card> dcards = gameManager.getDealer().getHands().get(0).toList();
         System.out.print(dcards.get(0).getText() + " " + "??");
         System.out.println("");
     }
@@ -43,14 +43,14 @@ public class DealersActionCui {
         System.out.print(".");
         Thread.sleep(500);
         System.out.println(".");
-        Hand hand = gameManager.getDealer().getHand();
+        Hand hand = gameManager.getDealer().getHands().get(0);
         while(!hand.isBust()
                 && (hand.getScore() < 17 || (hand.isSoft17() && gameManager.isSoft17Hit()) )
                 && gameManager.getDeck().size() > 0){
-            gameManager.getDealer().hit(gameManager.getDeck());
+                    hand.hit(gameManager.getDeck());
         }
         System.out.print("ディーラーの手札：");
-        for(Card card : gameManager.getDealer().getHand().toList()){
+        for(Card card : hand.toList()){
             System.out.print(card.getText() + " ");
         }
         System.out.println("");
