@@ -25,7 +25,7 @@ public class GameResultCui {
             int i = 1;
             for(Hand hand : player.getHands()){
                 if(player.getHands().size() >= 2){
-                    System.out.print(player.getName()+"の手札" + i + "点数：");
+                    System.out.print(player.getName()+"の手札" + i + "の点数：");
                 }
                 else{
                     System.out.print(player.getName()+"の点数：");
@@ -60,13 +60,17 @@ public class GameResultCui {
         Thread.sleep(1000);
     }
 
+    /**
+     * ゲームの結果を表示する。(全員バースト時)
+     * @throws InterruptedException
+     */
     public static void showResultBust(Game gameManager) throws InterruptedException{
         System.out.println("------------結果------------");
         for(Player player : gameManager.getPlayers()){
             int i = 1;
             for(Hand hand : player.getHands()){
                 if(player.getHands().size() >= 2){
-                    System.out.print(player.getName()+"の手札" + i + "点数：");
+                    System.out.print(player.getName()+"の手札" + i + "の点数：");
                 }
                 else{
                     System.out.print(player.getName()+"の点数：");

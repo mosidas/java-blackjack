@@ -92,7 +92,6 @@ public class PlayersActionCui {
             else if(input == 4)
             {
                 // スプリット
-                player.split();
                 doSplitedPlayerTurns(scanner, gameManager, player);
                 return;
             }
@@ -118,10 +117,19 @@ public class PlayersActionCui {
      * @throws InterruptedException
      */
     private static void doSplitedPlayerTurns(Scanner scanner, Game gameManager, Player player) throws InterruptedException {
+        player.split(gameManager.getDeck());
         System.out.println(player.getName() + "はスプリットした！");
+        System.out.print(player.getName() + "の手札：");
+        for(Hand hand : player.getHands()){
+            for(Card card : hand.toList()){
+                System.out.print(card.getText() + " ");
+            }
+            System.out.println("     ");
+        }
         int i = 1;
         for(Hand hand : player.getHands()){
             boolean stand = false;
+            System.out.println(player.getName() + "の手札"+ i + "のターン!");
             System.out.print(player.getName() + "の手札"+ i + "：");
             for(Card card : hand.toList()){
                 System.out.print(card.getText() + " ");

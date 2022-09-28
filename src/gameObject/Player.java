@@ -63,15 +63,23 @@ public class Player {
     }
 
     public boolean canSplit(){
+        Hand hand1 = new Hand();
+        hand1.add(hands.get(0).toList().get(0));
+
+        Hand hand2 = new Hand();
+        hand2.add(hands.get(0).toList().get(1));
+
         return hands.size() == 1
-        && hands.get(0).toList().get(0).getNumber() == hands.get(0).toList().get(1).getNumber()
+        && hand1.getScore() == hand2.getScore()
         && money >= bet * 2;
     }
 
-    public void split(){
+    public void split(Deck deck){
         hands.add(new Hand());
         hands.get(1).add(hands.get(0).toList().get(1));
         hands.get(0).toList().remove(1);
+        hands.get(0).hit(deck);
+        hands.get(1).hit(deck);
     }
 
     public void surrender(){

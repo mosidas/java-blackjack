@@ -9,6 +9,11 @@ import gameObject.GameSettings;
 */
 public class GameSettingCui {
 
+    /**
+     * ゲーム設定
+     * @param scanner
+     * @return
+     */
     public static GameSettings getGameSettings(Scanner scanner){
         // プレイヤー人数設定
         int playerCount = GameSettingCui.setPlayersNumber(scanner);
