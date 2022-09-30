@@ -20,7 +20,7 @@ public class GameResultCui {
         System.out.print("ディーラーの点数：");
         System.out.println(gameManager.getDealer().getHands().get(0).getScore());
 
-        for(Player player : gameManager.getPlayers()){
+        for(Player player : gameManager.getActivePlayers()){
             Thread.sleep(1000);
             int i = 1;
             for(Hand hand : player.getHands()){
@@ -45,7 +45,6 @@ public class GameResultCui {
                     if(player.isGameOver())
                     {
                         System.out.println(player.getName() + "、 ゲームオーバー！");
-                        gameManager.putRetiredPlayer(player);
                     }
                 }
                 else{
@@ -66,7 +65,7 @@ public class GameResultCui {
      */
     public static void showResultBust(Game gameManager) throws InterruptedException{
         System.out.println("------------結果------------");
-        for(Player player : gameManager.getPlayers()){
+        for(Player player : gameManager.getActivePlayers()){
             int i = 1;
             for(Hand hand : player.getHands()){
                 if(player.getHands().size() >= 2){
@@ -84,7 +83,6 @@ public class GameResultCui {
                 if(player.isGameOver())
                 {
                     System.out.println(player.getName() + "、 ゲームオーバー！");
-                    gameManager.putRetiredPlayer(player);
                 }
                 i++;
             }
@@ -106,7 +104,7 @@ public class GameResultCui {
         Thread.sleep(500);
         System.out.println(".");
         int count = 1;
-        for(Player p : gameManager.GetAllPlayer().stream().sorted(Comparator.comparing(Player::getMoney).reversed()).collect(Collectors.toList())){
+        for(Player p : gameManager.getAllPlayers().stream().sorted(Comparator.comparing(Player::getMoney).reversed()).collect(Collectors.toList())){
             System.out.print(count + ":" + p.getName() + "   所持金：" + p.getMoney() + "(");
             int delta = p.getMoney() - gameManager.defaultMoney();
             if(delta > 0){

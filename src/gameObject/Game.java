@@ -9,7 +9,6 @@ public class Game {
     private Deck deck;
     private List<Player> players;
     private Player dealer;
-    private List<Player> retiredPlayers;
     private GameSettings settings;
 
     /**
@@ -24,7 +23,6 @@ public class Game {
 
     public Game(GameSettings settings){
         players = new ArrayList<Player>();
-        retiredPlayers = new ArrayList<Player>();
         dealer = new Player("ディーラー",0);
         deck = new Deck();
         this.settings = settings;
@@ -38,12 +36,24 @@ public class Game {
         }
     }
 
-    public List<Player> getPlayers(){
-        return players;
-    }
-
     public Player getDealer(){
         return dealer;
+    }
+
+    public List<Player> getActivePlayers(){
+        List<Player> ps = new ArrayList<Player>();
+        for(Player p : getAllPlayers()){
+            if(p.isGameOver()){
+                continue;
+            }
+            ps.add(p);
+        }
+
+        return ps;
+    }
+
+    public List<Player> getAllPlayers(){
+        return players;
     }
 
     public Deck getDeck(){
@@ -62,7 +72,7 @@ public class Game {
      * 最初の手札を配る。
      */
     public void dealInitialHand(){
-        for(Player player: getPlayers()){
+        for(Player player: getActivePlayers()){
             player.resetHand();
             player.getHands().get(0).hit(getDeck());
             player.getHands().get(0).hit(getDeck());
@@ -123,7 +133,7 @@ public class Game {
     }
 
     public boolean allPlayerHandsIsBust(){
-        for(Player player : getPlayers()){
+        for(Player player : getActivePlayers()){
             for(Hand hand : player.getHands())
             if(!hand.isBust()){
                 return false;
@@ -131,23 +141,5 @@ public class Game {
         }
 
         return true;
-    }
-
-    public void putRetiredPlayer(Player player){
-        retiredPlayers.add(player);
-        getPlayers().remove(player);
-    }
-
-    public List<Player> GetAllPlayer(){
-        List<Player> ps = new ArrayList<Player>();
-        for(Player p : getPlayers()){
-            ps.add(p);
-        }
-
-        for(Player p : retiredPlayers){
-            ps.add(p);
-        }
-
-        return ps;
     }
 }

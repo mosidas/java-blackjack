@@ -17,7 +17,7 @@ public class DealersActionCui {
         // 手札を配る。
         gameManager.dealInitialHand();
         // 各プレイヤーの手札を表示する。
-        for(Player player : gameManager.getPlayers()){
+        for(Player player : gameManager.getActivePlayers()){
             System.out.print(player.getName() + "の手札：");
             for(Card card : player.getHands().get(0).toList()){
                 System.out.print(card.getText() + " ");

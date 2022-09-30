@@ -18,12 +18,9 @@ public class PlayersActionCui {
      * @param gameManager ゲーム
      */
     public static void setPlayersBet(Scanner scanner, Game gameManager) {
-        for(Player player : gameManager.getPlayers()){
+        for(Player player : gameManager.getActivePlayers()){
             while(true){
                 try{
-                    if(player.isGameOver()){
-                        break;
-                    }
                     System.out.print(player.getName() + "のベット(現在の所持金：" + player.getMoney() + ")：");
                     int input = scanner.nextInt();
                     if(1 <= input && input <= player.getMoney()){
@@ -47,10 +44,7 @@ public class PlayersActionCui {
      * @throws InterruptedException
      */
     public static void doPlayersTurn(Scanner scanner, Game gameManager) throws InterruptedException{
-        for(Player player : gameManager.getPlayers()){
-            if(player.isGameOver()){
-                continue;
-            }
+        for(Player player : gameManager.getActivePlayers()){
             // プレイヤーのターンを実行する。
             doPlayerTurns(scanner, gameManager, player);
         }
