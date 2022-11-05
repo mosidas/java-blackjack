@@ -3,6 +3,8 @@ package UI;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import gameObject.Game;
+
 /**
  * ゲーム開始のCUI
  */
@@ -12,7 +14,10 @@ public class GameStartCui {
      * @param scanner
      * @return
      */
-    public static int getContinue(Scanner scanner){
+    public static int getContinue(Scanner scanner, Game gameManager){
+        if(gameManager.getActivePlayers().size() == 0){
+            return 2;
+        }
         System.out.println("続けますか?");
         while(true){
             try{

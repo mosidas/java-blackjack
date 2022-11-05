@@ -35,7 +35,7 @@ public class BlackjackCui {
                 // 結果を表示する。
                 GameResultCui.showResultBust(gameManager);
                 // 続けるか選ぶ。
-                int input = GameStartCui.getContinue(scanner);
+                int input = GameStartCui.getContinue(scanner, gameManager);
                 if(input == 2){
                     break;
                 }
@@ -46,7 +46,7 @@ public class BlackjackCui {
             // 結果を表示する。
             GameResultCui.showResult(gameManager);
             // 続けるか選ぶ。
-            int input = GameStartCui.getContinue(scanner);
+            int input = GameStartCui.getContinue(scanner, gameManager);
             if(input == 2){
                 break;
             }
