@@ -32,16 +32,14 @@ public class GameResultCui {
                 }
                 System.out.println(hand.getScore());
                 gameManager.calcReturn(player, hand);
-                int money = player.getMoney();
-                int bet = player.getBet();
                 Thread.sleep(1000);
                 if(gameManager.getResult(player, hand) == Game.Results.win){
                     System.out.println("勝ちました！！！おめでとう！！！");
-                    System.out.println("お金：" + money + "(+" + bet + ")");
+                    System.out.println("お金：" + player.getMoney() + "(+" + player.getBet() + ")");
                 }
                 else if(gameManager.getResult(player, hand) == Game.Results.lose){
                     System.out.println("負けました...");
-                    System.out.println("お金：" + money + "(-" + bet + ")");
+                    System.out.println("お金：" + player.getMoney() + "(-" + player.getBet() + ")");
                     if(player.isGameOver())
                     {
                         System.out.println(player.getName() + "、 ゲームオーバー！");
@@ -49,7 +47,7 @@ public class GameResultCui {
                 }
                 else{
                     System.out.println("引き分けです！");
-                    System.out.println("お金：" + money + "(+-0)");
+                    System.out.println("お金：" + player.getMoney() + "(+-0)");
                 }
                 i++;
             }

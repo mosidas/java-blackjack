@@ -8,7 +8,7 @@ import gameObject.GameSettings;
  * ブラックジャックのCUIクラス
  */
 public class BlackjackCui {
-    private Game gameManager;
+    private Game game;
 
     /**
      * ゲームプレイ
@@ -21,38 +21,38 @@ public class BlackjackCui {
         Scanner scanner = new Scanner(System.in);
         // ゲーム設定
         GameSettings gs = GameSettingCui.getGameSettings(scanner);
-        gameManager = new Game(gs);
+        game = new Game(gs);
         // ゲーム終了するまでループ
         while(true) {
             // 掛け金を決める。
-            PlayersActionCui.setPlayersBet(scanner, gameManager);
+            PlayersActionCui.setPlayersBet(scanner, game);
             // 最初の手札を配る。
-            DealersActionCui.dealInitialHand(gameManager);
+            DealersActionCui.dealInitialHand(game);
             // 各プレイヤーのターンを実行する。
-            PlayersActionCui.doPlayersTurn(scanner, gameManager);
+            PlayersActionCui.doPlayersTurn(scanner, game);
             // 全員バーストしてたら終了する。
-            if(gameManager.allPlayerHandsIsBust()){
+            if(game.allPlayerHandsIsBust()){
                 // 結果を表示する。
-                GameResultCui.showResultBust(gameManager);
+                GameResultCui.showResultBust(game);
                 // 続けるか選ぶ。
-                int input = GameStartCui.getContinue(scanner, gameManager);
+                int input = GameStartCui.getContinue(scanner, game);
                 if(input == 2){
                     break;
                 }
                 continue;
             }
             // ディーラーのターンを実行する。
-            DealersActionCui.doDealerTurns(gameManager);
+            DealersActionCui.doDealerTurns(game);
             // 結果を表示する。
-            GameResultCui.showResult(gameManager);
+            GameResultCui.showResult(game);
             // 続けるか選ぶ。
-            int input = GameStartCui.getContinue(scanner, gameManager);
+            int input = GameStartCui.getContinue(scanner, game);
             if(input == 2){
                 break;
             }
         }
         // 最終結果を表示する。
-        GameResultCui.showResultEnd(gameManager);
+        GameResultCui.showResultEnd(game);
         System.out.println("Good bye.");
     }
 }
