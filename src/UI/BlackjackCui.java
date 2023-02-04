@@ -48,6 +48,9 @@ public class BlackjackCui {
             DealersActionCui.doDealerTurns(game);
             // 結果を表示する。
             GameResultCui.showResult(game);
+            if(game.allPlayerIsGameOver()){
+                break;
+            }
             // 続けるか選ぶ。
             int input = GameStartCui.getContinue(scanner, game);
             if(input == 2){
