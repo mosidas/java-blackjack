@@ -142,4 +142,8 @@ public class Game {
 
         return true;
     }
+
+    public boolean allPlayerIsGameOver(){
+        return getActivePlayers().size() == 0;
+    }
 }

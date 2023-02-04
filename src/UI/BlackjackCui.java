@@ -34,6 +34,9 @@ public class BlackjackCui {
             if(gameManager.allPlayerHandsIsBust()){
                 // 結果を表示する。
                 GameResultCui.showResultBust(gameManager);
+                if(gameManager.allPlayerIsGameOver()){
+                    break;
+                }
                 // 続けるか選ぶ。
                 int input = GameStartCui.getContinue(scanner);
                 if(input == 2){
@@ -45,6 +48,9 @@ public class BlackjackCui {
             DealersActionCui.doDealerTurns(gameManager);
             // 結果を表示する。
             GameResultCui.showResult(gameManager);
+            if(gameManager.allPlayerIsGameOver()){
+                break;
+            }
             // 続けるか選ぶ。
             int input = GameStartCui.getContinue(scanner);
             if(input == 2){
