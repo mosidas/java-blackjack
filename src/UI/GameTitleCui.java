@@ -10,7 +10,7 @@ public class GameTitleCui {
     public static void showTitle() {
         System.out.println("+++++++++++++++++++++++++");
         System.out.println("+++++++++++++++++++++++++");
-        System.out.println("++++++ Balck jack  ++++++");
+        System.out.println("++++++ Black jack  ++++++");
         System.out.println("+++++++++++++++++++++++++");
         System.out.println("+++++++++++++++++++++++++");
     }

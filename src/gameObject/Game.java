@@ -121,15 +121,15 @@ public class Game {
 
     public void calcReturn(Player player, Hand hand){
         Results r = getResult(player, hand);
-            if(r == Results.win){
-                player.addMoney(player.getBet());
-            }
-            else if(r == Results.lose){
-                player.addMoney(-player.getBet());
-            }
-            else if (r == Results.surrender){
-                player.addMoney(-player.getBet() * 1/2);
-            }
+        if(r == Results.win){
+            player.addMoney(player.getBet());
+        }
+        else if(r == Results.lose){
+            player.addMoney(-player.getBet());
+        }
+        else if (r == Results.surrender){
+            player.addMoney(-player.getBet() * 1/2);
+        }
     }
 
     public boolean allPlayerHandsIsBust(){
